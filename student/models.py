@@ -5,7 +5,6 @@ from django.utils import timezone
 
 # Create your models here.
 class Gatepass(models.Model):
-    gatepass_id = models.AutoField
     student_name = models.CharField(max_length=50)
     student_email = models.EmailField(max_length=254,default="pk@pk.com")
     hostel = models.CharField(max_length=3,default="H")
