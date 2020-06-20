@@ -9,7 +9,7 @@ class Register(models.Model):
     student_password = models.CharField(max_length=50)
     hostel = models.CharField(max_length=3)
     image = models.ImageField(upload_to='student/images', default="")
-    date_time = models.DateTimeField(auto_now_add=True)
+    date_in = models.DateTimeField(auto_now_add=True)
      
 
 
