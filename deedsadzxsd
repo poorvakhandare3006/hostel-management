@@ -1,0 +1,156 @@
+[33mcommit 45d6e4a51f96ec4405da30e77f77c81f9a62cb97[m
+Author: Amisha Sinha <sinhaamisha09@gmail.com>
+Date:   Sat Jun 20 17:40:35 2020 +0530
+
+    stu
+
+[33mcommit 1cb8aa0c7477c574957b688a2d23f7c98de3d034[m
+Author: Amisha Sinha <sinhaamisha09@gmail.com>
+Date:   Sat Jun 20 17:27:59 2020 +0530
+
+    register
+
+[33mcommit 620d476099667247c9dcf771af6db4bf8b6c961a[m
+Merge: 67e0e11 fc72b91
+Author: Amisha Sinha <sinhaamisha09@gmail.com>
+Date:   Sat Jun 20 17:25:33 2020 +0530
+
+    Merge https://github.com/poorvakhandare3006/hostel-management
+
+[33mcommit 67e0e11499b426f7dd745568ccdfec675aa2ec0a[m
+Author: Amisha Sinha <sinhaamisha09@gmail.com>
+Date:   Sat Jun 20 17:03:00 2020 +0530
+
+    reg
+
+[33mcommit fc72b91cc065121fd79ac9e6c67e457b02dc8077[m
+Author: poorvakhandare3006 <poorvakhandare1999@gmail.com>
+Date:   Sat Jun 20 00:01:59 2020 +0530
+
+    gatepass database and register database added
+
+[33mcommit 43054653534fe45f2796561ace1989bfc56f2ff6[m
+Author: poorvakhandare3006 <poorvakhandare1999@gmail.com>
+Date:   Fri Jun 19 23:57:23 2020 +0530
+
+    gatepass database and register database added
+
+[33mcommit 9ce7086c0db30cff75686a62f4cbdd2bfb05fc0b[m
+Merge: d65d985 f74e939
+Author: sinhaamisha09 <sinhaamisha09@gmail.com>
+Date:   Wed Jun 17 08:26:14 2020 +0530
+
+    updated
+
+[33mcommit f74e939703aa491341d80e001b2a8c28d8c4cef6[m
+Merge: 8ccd623 c971e72
+Author: Amisha Sinha <36271876+sinhaamisha09@users.noreply.github.com>
+Date:   Wed Jun 17 08:12:00 2020 +0530
+
+    Merge pull request #6 from poorvakhandare3006/master
+    
+    changes done
+
+[33mcommit d65d985d7484ad786f5f00ffa17c72eb783f2286[m
+Author: sinhaamisha09 <sinhaamisha09@gmail.com>
+Date:   Wed Jun 17 08:04:46 2020 +0530
+
+    updated
+
+[33mcommit c971e7247aef41447a08c04234fd0dd2c2b8f396[m
+Merge: 1649609 8ccd623
+Author: poorvakhandare3006 <poorvakhandare1999@gmail.com>
+Date:   Tue Jun 16 23:32:01 2020 +0530
+
+    chnges
+
+[33mcommit 1649609514ee74fb5f8311d068c5cfaded3c1da4[m
+Author: poorvakhandare3006 <poorvakhandare1999@gmail.com>
+Date:   Tue Jun 16 23:21:13 2020 +0530
+
+    gatepass added
+
+[33mcommit 2eb5ea866a99e06ef56afa827f49deda02fb6346[m
+Author: poorvakhandare3006 <poorvakhandare1999@gmail.com>
+Date:   Tue Jun 16 23:11:53 2020 +0530
+
+    gatepass added
+
+[33mcommit 8ccd623c5bf712e855abeb4aeb3046b4c5e41456[m
+Merge: a5e1718 84df316
+Author: Amisha Sinha <36271876+sinhaamisha09@users.noreply.github.com>
+Date:   Tue Jun 16 17:38:06 2020 +0530
+
+    Merge pull request #4 from sinhaamisha09/amisha
+    
+    nav
+
+[33mcommit 84df316f7e81780322aab1d27b07b61998c53cce[m
+Merge: 9644c2f a5e1718
+Author: Amisha Sinha <36271876+sinhaamisha09@users.noreply.github.com>
+Date:   Tue Jun 16 17:37:54 2020 +0530
+
+    Merge branch 'master' into amisha
+
+[33mcommit 9644c2f2d51343870fdaf34868f3be235ea342a0[m
+Author: sinhaamisha09 <sinhaamisha09@gmail.com>
+Date:   Tue Jun 16 17:29:25 2020 +0530
+
+    nav
+
+[33mcommit a5e17188808b7bc4a8faa5867457f05c5fb71ce8[m
+Author: sinhaamisha09 <sinhaamisha09@gmail.com>
+Date:   Tue Jun 16 17:12:35 2020 +0530
+
+    navbar added
+
+[33mcommit a882c1d69740dfd6f2dd624a53ff8f17e81bd734[m
+Merge: 0ca20d4 c01a3e8
+Author: Amisha Sinha <36271876+sinhaamisha09@users.noreply.github.com>
+Date:   Tue Jun 16 12:51:58 2020 +0530
+
+    Merge pull request #3 from poorvakhandare3006/master
+    
+    apps added
+
+[33mcommit c01a3e8a55b21b05058de2ee62732c002434b473[m
+Author: poorvakhandare3006 <poorvakhandare1999@gmail.com>
+Date:   Tue Jun 16 12:23:16 2020 +0530
+
+    apps added
+
+[33mcommit 0ca20d46e0b3d945a6ffa63934591cc2c4fa4475[m
+Merge: 069b3c4 f36aecc
+Author: poorvakhandare3006 <40933112+poorvakhandare3006@users.noreply.github.com>
+Date:   Mon Jun 15 20:28:55 2020 +0530
+
+    Merge pull request #2 from poorvakhandare3006/master
+    
+    req added
+
+[33mcommit f36aecc8ea7d26665a4e86bce5275998c51eb02b[m
+Author: poorvakhandare3006 <poorvakhandare1999@gmail.com>
+Date:   Mon Jun 15 20:27:30 2020 +0530
+
+    req added
+
+[33mcommit 069b3c4fbcedc42978a86a614ae5dbad32adacb6[m
+Merge: da7e49a dfed379
+Author: poorvakhandare3006 <40933112+poorvakhandare3006@users.noreply.github.com>
+Date:   Mon Jun 15 20:23:19 2020 +0530
+
+    Merge pull request #1 from poorvakhandare3006/master
+    
+    env made
+
+[33mcommit dfed37934c33056a74de40dd08e63115085336c4[m
+Author: poorvakhandare3006 <poorvakhandare1999@gmail.com>
+Date:   Mon Jun 15 20:21:10 2020 +0530
+
+    env made
+
+[33mcommit da7e49adca63e6d89e4bbea52846e73e9ddedb12[m
+Author: sinhaamisha09 <sinhaamisha09@gmail.com>
+Date:   Fri Jun 12 13:00:06 2020 +0530
+
+    first commit
