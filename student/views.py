@@ -1,6 +1,14 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import Gatepass
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as loginn
+from django.contrib.auth import logout as logout_view
+from django.contrib.auth.decorators import login_required
+
+
+
+
 
 
 
@@ -30,4 +38,18 @@ def gatepass(request):
 
    
 def login(request):
-    return HttpResponse("loginnn")
+    if request.method == 'POST':
+        username = request.POST['email']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            loginn(request, user)
+            return redirect("studenthome")
+        else:
+            return render(request,"student/login.html")
+    else:
+        return render(request,"student/login.html")
+@login_required
+def logout(request):
+    logout_view(request)
+    return redirect("studenthome")
