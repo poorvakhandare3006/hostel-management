@@ -7,8 +7,6 @@ from django.contrib.auth import logout as logout_view
 from django.contrib.auth.decorators import login_required
 from .forms import ComplaintForm
 from django.views.generic import ListView, DetailView
-from rest_framework import viewsets          # add this
-from .serializers import ComplaintSerializer
 
 
 # Create your views here.
@@ -57,7 +55,7 @@ def logout(request):
 
 
 class IndexView(ListView):
- template_name='student/complaints.html'
+ template_name='student/index.html'
  context_object_name = 'complaint_list'
  def get_queryset(self):
   return Complaint.objects.all()
@@ -67,18 +65,14 @@ class ComplaintDetailView(DetailView):
  model=Complaint
  template_name = 'student/complaint_detail.html'
 
-class ComplaintView(viewsets.ModelViewSet):       
-  serializer_class = ComplaintSerializer          
-  queryset = Complaint.objects.all() 
-
 def viewcomplaint(request):
  if request.method == 'POST':
   form = ComplaintForm(request.POST)
   if form.is_valid():
    form.save()
-  return redirect('complaints')
+  return redirect('index')
  form = ComplaintForm()
- return render(request,'student/complaints.html',{'form': form})
+ return render(request,'student/index.html',{'form': form})
 
 #create complaint
 def postcomplaint(request):
@@ -86,7 +80,7 @@ def postcomplaint(request):
   form = ComplaintForm(request.POST)
   if form.is_valid():
    form.save()
-  return redirect('complaints')
+  return redirect('index')
  form = ComplaintForm()
  return render(request,'student/post_complaint.html',{'form': form})
 

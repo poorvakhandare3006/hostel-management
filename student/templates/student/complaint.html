@@ -34,31 +34,9 @@
         <div class="row">
           <div class="col-md-1 col-xs-1 col-sm-1"></div>
           <div class="col-md-10 col-xs-10 col-sm-10">
-          <form method="post" novalidate>
+          <form method="POST" novalidate>
             {% csrf_token %}
-            <div class="form-group">
-              <label for="room">Room No. <span class="required">*</span></label>
-              <input type="text" class="form-control" id="room" name="room" placeholder="Enter Room no." pattern="[0-9]{3}" required>                                           
-            </div>
-            <div class="form-group">
-              <label for="course">Category<span class="required">*</span></label>
-              <input type="radio" name="category" id="electricity" value="Electricity" required>
-              <label for="imt">Electricity</label>
-              <input type="radio" name="category" id="plumber" value="Plumber">
-              <label for="img">Plumber</label>
-              <input type="radio" name="category" id="carpenter" value="Carpenter">
-              <label for="cs">Carpenter</label>
-              <input type="radio" name="category" id="others" value="Others">
-              <label for="pgmtech">Others</label>
-            </div>
-            <div class="form-group">
-              <label for="name">Title<span class="required">*</span></label>
-              <input type="text" class="form-control" id="title" name="title" placeholder="Title of Complaint" pattern="[A-Za-z ]{1,50}" required>
-            </div>
-            <div class="form-group">
-              <label for="Reason">Description<span class="required">*</span></label>
-              <input type="text" class="form-control" id="description" name="description" placeholder="Describe issue..." required>
-            </div>
+            {{ form.as_p }}
             <button type="submit" class="btn btn-primary">Post</button>
           </form>
           <br>
@@ -71,3 +49,27 @@
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     </body>
 </html>
+
+<!-- <div class="form-group">
+  <label for="room">Room No. <span class="required">*</span></label>
+  <input type="text" class="form-control" id="room" name="room" placeholder="Enter Room no." pattern="[0-9]{3}" required>                                           
+</div>
+<div class="form-group">
+  <label for="course">Category<span class="required">*</span></label>
+  <input type="radio" name="category" id="electricity" value="Electricity" required>
+  <label for="imt">Electricity</label>
+  <input type="radio" name="category" id="plumber" value="Plumber">
+  <label for="img">Plumber</label>
+  <input type="radio" name="category" id="carpenter" value="Carpenter">
+  <label for="cs">Carpenter</label>
+  <input type="radio" name="category" id="others" value="Others">
+  <label for="pgmtech">Others</label>
+</div>
+<div class="form-group">
+  <label for="name">Title<span class="required">*</span></label>
+  <input type="text" class="form-control" id="title" name="title" placeholder="Title of Complaint" pattern="[A-Za-z ]{1,50}" required>
+</div>
+<div class="form-group">
+  <label for="Reason">Description<span class="required">*</span></label>
+  <input type="text" class="form-control" id="description" name="description" placeholder="Describe issue..." required>
+</div> -->
