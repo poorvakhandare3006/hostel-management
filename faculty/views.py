@@ -1,7 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib.auth.models import User
 from .models import UserProfile
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as loginn
+from django.contrib.auth import logout as logout_view
+from django.contrib.auth.decorators import login_required
 
 # from django.core.mail import EmailMessage
 # from django.utils.encoding import force_bytes, force_text
@@ -61,6 +65,7 @@ def register(request):
         return render(request, 'faculty/register.html',{'thank':thank})
     else:
         return render(request,"faculty/register.html")
+
 def member_activate(request, uidb64, token):
 	try:
 		uid = force_text(urlsafe_base64_decode(uidb64))
@@ -76,6 +81,21 @@ def member_activate(request, uidb64, token):
 	else:
 		return HttpResponse('link is invalid! or You have already confirmed!!')
 
-
+def login(request):
+    if request.method == 'POST':
+        username = request.POST['email']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            loginn(request, user)
+            return redirect("studenthome")
+        else:
+            return render(request,"faculty/login.html")
+    else:
+        return render(request,"faculty/login.html")
+@login_required
+def logout(request):
+    logout_view(request)
+    return redirect("facultyhome")
 
         

@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'student.apps.StudentConfig',
     'faculty.apps.FacultyConfig',
-  
+    'widget_tweaks',
+    'rest_framework',
 
 
 ]

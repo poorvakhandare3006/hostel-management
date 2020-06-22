@@ -1,15 +1,14 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from .models import Gatepass
+from .models import Gatepass, Complaint
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as loginn
 from django.contrib.auth import logout as logout_view
 from django.contrib.auth.decorators import login_required
-
-
-
-
-
+from .forms import ComplaintForm
+from django.views.generic import ListView, DetailView
+from rest_framework import viewsets          # add this
+from .serializers import ComplaintSerializer
 
 
 # Create your views here.
@@ -53,3 +52,48 @@ def login(request):
 def logout(request):
     logout_view(request)
     return redirect("studenthome")
+
+
+
+
+class IndexView(ListView):
+ template_name='student/complaints.html'
+ context_object_name = 'complaint_list'
+ def get_queryset(self):
+  return Complaint.objects.all()
+
+#Detail view (view post detail)
+class ComplaintDetailView(DetailView):
+ model=Complaint
+ template_name = 'student/complaint_detail.html'
+
+class ComplaintView(viewsets.ModelViewSet):       
+  serializer_class = ComplaintSerializer          
+  queryset = Complaint.objects.all() 
+
+def viewcomplaint(request):
+ if request.method == 'POST':
+  form = ComplaintForm(request.POST)
+  if form.is_valid():
+   form.save()
+  return redirect('complaints')
+ form = ComplaintForm()
+ return render(request,'student/complaints.html',{'form': form})
+
+#create complaint
+def postcomplaint(request):
+ if request.method == 'POST':
+  form = ComplaintForm(request.POST)
+  if form.is_valid():
+   form.save()
+  return redirect('complaints')
+ form = ComplaintForm()
+ return render(request,'student/post_complaint.html',{'form': form})
+
+#Delete complaint
+def deletecomplaint(request, pk, template_name='del_complaint.html'):
+    post= get_object_or_404(Complaint, pk=pk)    
+    if request.method=='POST':
+        post.delete()
+        return redirect('index')
+    return render(request, template_name, {'object':post})

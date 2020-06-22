@@ -18,7 +18,12 @@ class Gatepass(models.Model):
     date_time = models.DateTimeField(default=timezone.now) 
 
 
-
-
-
-
+class Complaint(models.Model):
+ title = models.CharField(max_length=120)
+ room = models.CharField(max_length=10)
+ category = models.CharField(max_length=20)
+ date_time  = models.DateTimeField(default=timezone.now) 
+ description = models.TextField(help_text="what's the issue ...")
+ 
+ def __str__(self):
+  return self.title
