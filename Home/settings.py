@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'student.apps.StudentConfig',
     'faculty.apps.FacultyConfig',
-  
+    'widget_tweaks',
+    'rest_framework',
 
 
 ]
@@ -126,3 +127,8 @@ STATIC_URL = '/static/'
 # Managing media
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smp.gmail.com'
+EMAIL_HOST_USER = 'poorvakhandare1999@gmail.com'
+EMAIL_HOST_PASSWORD = 'adgdmimmlib'
+EMAIL_PORT = 587

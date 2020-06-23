@@ -1,4 +1,4 @@
-#!/home/amisha/Desktop/hostel/env/bin/python3.8
+#!/home/amisha/Desktop/hostel/env/bin/python
 from django.core import management
 
 if __name__ == "__main__":

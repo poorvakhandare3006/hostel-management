@@ -7,6 +7,16 @@
 
 {% block body %}
 {% load static %}
+{% if user.is_authenticated %}
+{{user.username}}
+{{user.userprofile.hostel}}
+
+
+{% else %}
+<p>no user</p>
+
+{% endif %}
+
 
  {% endblock %}
  {% block js %}
