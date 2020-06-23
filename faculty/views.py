@@ -1,3 +1,4 @@
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib.auth.models import User
@@ -6,24 +7,14 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login as loginn
 from django.contrib.auth import logout as logout_view
 from django.contrib.auth.decorators import login_required
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.template.loader import render_to_string
+from .tokens import account_activation_token
+from django.contrib.auth.models import User
+from django.core.mail import EmailMessage
 
-# from django.core.mail import EmailMessage
-# from django.utils.encoding import force_bytes, force_text
-# from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-# from .tokens import account_activation_token
-# #from .token import forgot_password_token
-# from django.template.loader import render_to_string
-# from django.contrib.auth import authenticate, login ,logout
-# from django.contrib.auth.decorators import login_required
-# #from dateutil import parser
-# from django.urls import reverse
-# from django.contrib.auth.decorators import login_required
-# from .task import send_verification_email
-# from django import template
-#from .forms import RegistrationForm, LoginForm
-
-
-# Create your views here.
 def index(request):
     return render(request,'faculty/index.html')
 def register(request):
@@ -56,31 +47,35 @@ def register(request):
         profile.course=course
         profile.roll=roll_no
         profile.save()
+        user.is_active = False
         user.save()
         thank = True
         # mail_subject = 'IIITM Hostel Management'
-        # message=render_to_string('membership_apply.html',{'user': user,'reference_name' : student_name ,'domain': '127.0.0.1:8000','uid': urlsafe_base64_encode(force_bytes(user.pk)).decode(),'token': account_activation_token.make_token(user),})
+        # message=render_to_string('faculty/register_apply.html',{'user': user,'reference_name' : student_name ,'domain': '127.0.0.1:8000','uid': force_text(urlsafe_base64_encode(force_bytes(user.pk))),'token': account_activation_token.make_token(user),})
+        # to_email = student_email
         # email=EmailMessage(mail_subject,message,to=['poorvakhandare1999@gmail.com'])
         # email.send()
+        #return HttpResponse('Please confirm your email address to complete the registration')
         return render(request, 'faculty/register.html',{'thank':thank})
     else:
         return render(request,"faculty/register.html")
-
-def member_activate(request, uidb64, token):
-	try:
-		uid = force_text(urlsafe_base64_decode(uidb64))
-		user = User.objects.get(pk=uid)
-	except(TypeError, ValueError, OverflowError, User.DoesNotExist):
-		user = None
-	if user is not None and account_activation_token.check_token(user, token):
-		profile = user.userprofile
-		profile.is_member = True
-
-		profile.save()
-		return HttpResponse('Thank you for your confirmation')
-	else:
-		return HttpResponse('link is invalid! or You have already confirmed!!')
-
+def activate(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        profile = user.userprofile
+        profile.is_member = True
+        profile.save()
+        user.save()
+        login(request, user)
+        # return redirect('home')
+        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+    else:
+        return HttpResponse('Activation link is invalid!')
 def login(request):
     if request.method == 'POST':
         username = request.POST['email']

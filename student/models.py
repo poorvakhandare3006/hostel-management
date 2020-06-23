@@ -7,7 +7,7 @@ from django.utils import timezone
 class Gatepass(models.Model):
     student_name = models.CharField(max_length=50)
     student_email = models.EmailField(max_length=254,default="pk@pk.com")
-    hostel = models.CharField(max_length=3,default="H")
+    hostel = models.CharField(max_length=3,null=True)
     date_out = models.DateField()
     date_in = models.DateField()
     reason = models.CharField(max_length=300)
@@ -19,11 +19,13 @@ class Gatepass(models.Model):
 
 
 class Complaint(models.Model):
- title = models.CharField(max_length=120)
- room = models.CharField(max_length=10)
- category = models.CharField(max_length=20)
- date_time  = models.DateTimeField(default=timezone.now) 
- description = models.TextField(help_text="what's the issue ...")
- 
- def __str__(self):
-  return self.title
+    student_email = models.EmailField(max_length=254,default="pk@pk.com")
+    title = models.CharField(max_length=120)
+    room_c = models.CharField(max_length=10,null=True)
+    room = models.CharField(max_length=10)
+    category = models.CharField(max_length=20)
+    date_time  = models.DateTimeField(default=timezone.now) 
+    description = models.TextField(help_text="what's the issue ...")
+
+    def __str__(self):
+        return self.category
