@@ -12,6 +12,7 @@ from django.views.generic import ListView, DetailView
 # Create your views here.
 def index(request):
     return render(request,"student/index.html")
+
 def gatepass(request):
     if request.method=="POST":
         student_name = request.POST.get('name', '')
@@ -41,58 +42,27 @@ def login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             loginn(request, user)
-            return redirect("studenthome")
+
+            if user.is_active:
+                loginn(request, user)
+                data = Complaint.objects.all()
+                comp = {
+                    "complaint_number": data
+                }
+                return render_to_response("login/index.html", compl)
+            else:
+                HttpResponse("Inactive User.")
+                # return redirect("studenthome")
         else:
-            return render(request,"student/login.html")
+                return render(request,"student/login.html")
     else:
         return render(request,"student/login.html")
+
 @login_required
 def logout(request):
     logout_view(request)
     return redirect("studenthome")
 
-<<<<<<< HEAD
-
-
-
-# class IndexView(ListView):
-#  template_name='student/index.html'
-#  context_object_name = 'complaint_list'
-#  def get_queryset(self):
-#   return Complaint.objects.all()
-
-#Detail view (view post detail)
-class ComplaintDetailView(DetailView):
- model=Complaint
- template_name = 'student/complaint_detail.html'
-
-def viewcomplaint(request):
- if request.method == 'POST':
-  form = ComplaintForm(request.POST)
-  if form.is_valid():
-   form.save()
-  return redirect('index')
- form = ComplaintForm()
- return render(request,'student/index.html',{'form': form})
-
-#create complaint
-def postcomplaint(request):
- if request.method == 'POST':
-  form = ComplaintForm(request.POST)
-  if form.is_valid():
-   form.save()
-  return redirect('index')
- form = ComplaintForm()
- return render(request,'student/complaint.html',{'form': form})
-
-#Delete complaint
-def deletecomplaint(request, pk, template_name='del_complaint.html'):
-    post= get_object_or_404(Complaint, pk=pk)    
-    if request.method=='POST':
-        post.delete()
-        return redirect('index')
-    return render(request, template_name, {'object':post})
-=======
 def complaint(request):
     if request.method=="POST":
             student_email = request.user.username
@@ -107,4 +77,4 @@ def complaint(request):
             return redirect("studenthome")
     else:
         return render(request,"student/complaint.html")
->>>>>>> 33431f73677c79e488c0766a2fe6ad853d2abb5f
+

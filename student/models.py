@@ -18,21 +18,6 @@ class Gatepass(models.Model):
     date_time = models.DateTimeField(default=timezone.now) 
 
 
-<<<<<<< HEAD
-
-class Complaint(models.Model):
- title = models.CharField(max_length=120)
- room = models.CharField(max_length=10)
- category = models.CharField(max_length=20)
- date_time  = models.DateTimeField(default=timezone.now) 
- description = models.TextField(help_text="what's the issue ...")
- 
- def __str__(self):
-  return self.title
-
-
-
-=======
 class Complaint(models.Model):
     student_email = models.EmailField(max_length=254,default="pk@pk.com")
     title = models.CharField(max_length=120)
@@ -44,4 +29,6 @@ class Complaint(models.Model):
 
     def __str__(self):
         return self.category
->>>>>>> 33431f73677c79e488c0766a2fe6ad853d2abb5f
+    
+    class Meta:
+        db_table = 'complaints'
