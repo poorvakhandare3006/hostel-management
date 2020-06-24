@@ -9,6 +9,7 @@
 {% load static %}
 {% if user.is_authenticated %}
 {{user.username}}
+{{user.userprofile.image}}
 {{user.userprofile.hostel}}
 
 
