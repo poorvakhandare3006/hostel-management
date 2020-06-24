@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from .models import Gatepass, Complaint
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as loginn
+
+
 from django.contrib.auth import logout as logout_view
 from django.contrib.auth.decorators import login_required
 from .forms import ComplaintForm
@@ -12,6 +14,8 @@ from django.views.generic import ListView, DetailView
 # Create your views here.
 def index(request):
     return render(request,"student/index.html")
+
+@login_required
 def gatepass(request):
     if request.method=="POST":
         student_name = request.POST.get('name', '')
@@ -50,7 +54,7 @@ def login(request):
 def logout(request):
     logout_view(request)
     return redirect("studenthome")
-
+@login_required
 def complaint(request):
     if request.method=="POST":
             student_email = request.user.username
