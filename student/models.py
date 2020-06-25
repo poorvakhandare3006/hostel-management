@@ -19,10 +19,10 @@ class Gatepass(models.Model):
 
 
 class Complaint(models.Model):
-    student_email = models.EmailField(max_length=254,default="pk@pk.com")
+    student_name = models.CharField(max_length=254)
     title = models.CharField(max_length=120)
     room_c = models.CharField(max_length=10,null=True)
-    room = models.CharField(max_length=10)
+    room = models.CharField(max_length=10,null=True)
     category = models.CharField(max_length=20)
     date_time  = models.DateTimeField(default=timezone.now) 
     description = models.TextField(help_text="what's the issue ...")
@@ -31,4 +31,4 @@ class Complaint(models.Model):
         return self.category
     
     class Meta:
-        db_table = 'complaints'
+        db_table = 'complaint'

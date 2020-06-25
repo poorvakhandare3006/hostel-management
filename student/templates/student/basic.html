@@ -27,15 +27,17 @@
         <a class="nav-link" href="/student">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/student/about">About</a>
+        <a class="nav-link" href="/student/complaint">Complaint</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/student/contact">Contact Us</a>
+        <a class="nav-link" href="/student/gatepass">Gatepass</a>
       </li>
     </ul>
     
     <form  method="get" action='/student/login' class="form-inline my-2 my-lg-0">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
+      
+        {% block nav %} {% endblock %} 
+      
     </form>
     
   

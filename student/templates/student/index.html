@@ -2,32 +2,78 @@
 {% block title%}HM{% endblock %}
 
 {% block css %}
-         
- {% endblock %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  
+{% endblock %}
+
+
+{% block nav %} 
+  {% if user.is_authenticated %}
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
+    
+  {% else %}
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
+
+  {% endif %}
+{% endblock %} 
 
 {% block body %}
-{% load static %}
-{% if user.is_authenticated %}
-{{user.username}}
-{{user.userprofile.image}}
-{{user.userprofile.hostel}}
+ {% load static %}
+  <br/>
+  {% if user.is_authenticated %}
+      <div class="row">
+        <div class="col-md-1 col-xs-1 col-sm-1"></div>
+        <div  class="col-md-10 col-xs-10 col-sm-10">
+          <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#complaint" >
+            Complaint
+          </button> -->
+          <h2>Complaint</h2>
+          <br/>
+          {% if user.username == complaint.student_name %}
+          <div class="modal fade" id="complaint" tabindex="-1" role="dialog" aria-labelledby="complaint" aria-hidden="true"></div>
+            <table id="complaint" class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Room No.</th>
+                  <th scope="col">Category</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for complaint in complaint_number %}
+                <tr>
+                  <td>{{complaint.room}}</td>
+                  <td>{{complaint.category}}</td>
+                  <td>{{complaint.title}}</td>
+                  <td>{{complaint.description}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>   
+            </table> 
+            {% else %}
+            <p>
+              No Complaint Registered
+            </p>
+            {% endif %}
+        </div>
+        </div>
+        <div class="col-md-1 col-xs-1 col-sm-1"></div>
+      </div>
 
+         
+   {% else %}
+    <p>Login first</p> 
+  {% endif %}
+  
+ 
+{% endblock %}
 
-{% else %}
-<p>no user</p>
-{% for complaint in complaint_number %}
-    {{ complaint.title}}
-    {{ complaint.date_time}}
-    {{ complaint.category }}
-    {{ complaint.description }}
-{% endfor %}
-
-{% endif %}
-
-
- {% endblock %}
- {% block js %}
+{% block js %}
 <script>
-
-  </script>
-  {% endblock %}
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</script>
+{% endblock %}
