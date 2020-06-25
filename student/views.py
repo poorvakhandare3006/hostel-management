@@ -15,10 +15,8 @@ from django.views.generic import ListView, DetailView
 def index(request):
     return render(request,"student/index.html")
 
-<<<<<<< HEAD
-=======
+
 @login_required
->>>>>>> 160f28fb05c4f4fae88970c9279f5707a2183aca
 def gatepass(request):
     if request.method=="POST":
         student_name = request.POST.get('name', '')
