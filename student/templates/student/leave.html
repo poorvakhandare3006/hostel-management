@@ -1,5 +1,5 @@
 {% extends 'student/basic.html' %}
-{% block title%}GatePass{% endblock %}
+{% block title%}Leave{% endblock %}
 
 {% block css %}
           .jumbotron{
@@ -12,35 +12,60 @@
 
 {% block body %}
 <div class="jumbotron">
-<form action="/student/gatepass/" method="post">{% csrf_token %}
+<form action="/student/leave/" method="post">{% csrf_token %}
+  
   <div class="form-group">
     <label for="InputName">Name<span class="required">*</span></label>
     <input type="text" class="form-control" id="InputName" name="name" placeholder="Enter Name" required>
   </div>
+
+  <div class="form-group">
+    <label for="hostel">Hostel Name/Number<span class="required">*</span></label>
+    <input type="radio" name="hostel" id="gh" value="GH" required>
+    <label for="gh">GH</label>
+    <input type="radio" name="hostel" id="bh1" value="BH1">
+    <label for="bh1">BH1</label>
+    <input type="radio" name="hostel" id="bh2" value="BH2">
+    <label for="bh2">BH2</label>
+    <input type="radio" name="hostel" id="bh3" value="BH3">   
+    <label for="bh3">BH3</label> 
+  </div>
+
+  <div class="form-group">
+    <label for="room">Room No. <span class="required">*</span></label>
+    <input type="text" class="form-control" id="room" name="room" placeholder="Enter Room no." pattern="[0-9]{3}" required>                                           
+  </div>
+
   <div class="form-group">
     <label for="Datefrom">Date Out<span class="required">*</span></label>
     <input type="date" class="form-control" id="Datefrom" name="datefrom" placeholder="Date Out" required>
   </div>
+
   <div class="form-group">
     <label for="Dateto">Date In<span class="required">*</span></label>
     <input type="date" class="form-control" id="Dateto" placeholder="Date In" name="dateto" required>
   </div>
+
    <div class="form-group">
     <label for="Reason">Reason for Leave<span class="required">*</span></label>
     <input type="text" class="form-control" id="Reason" name="reason" placeholder="Reason for Leave" required>
   </div>
+
   <div class="form-group">
     <label for="Address">Address during Leave<span class="required">*</span></label>
     <textarea class="form-control" id="Address" rows="3" name="address" required></textarea>
   </div>
-   <div class="form-group">
+
+  <div class="form-group">
     <label for="Scontact">Student Contact<span class="required">*</span></label>
     <input type="text" class="form-control" id="Scontact"  name="scontact" placeholder="Student Contact" pattern="[0-9]{10}" title="Enter a 10-digit number" required>
   </div>
+
   <div class="form-group">
-    <label for="Items">Items Carrying<span class="required">*</span></label>
-    <input type="text" class="form-control" id="Items"  name="items" placeholder="Items Carrying" required>
+    <label for="Pcontact">Parent/Guardian Contact<span class="required">*</span></label>
+    <input type="text" class="form-control" id="Pcontact"  name="pcontact" placeholder="Parent/Guardian Contact" pattern="[0-9]{10}" title="Enter a 10-digit number" required>
   </div>
+
   <button type="submit" class="btn btn-primary">Submit</button>
     
     <br>

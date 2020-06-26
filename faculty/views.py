@@ -21,6 +21,7 @@ from .demo import EMAIL_HOST_USER
 def index(request):
     return render(request,'faculty/index.html')
 
+@login_required
 def register(request):
     if request.method=="POST":
         student_name = request.POST.get('name', '')
@@ -83,19 +84,25 @@ def activate(request, uidb64, token):
 
 def login(request):
     if request.method == 'POST':
-        username = request.POST['email']
+        username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
         if user is not None:
             loginn(request, user)
-            return redirect("studenthome")
+
+            if user.is_active:
+                loginn(request, user)
+                
+                return render(request,"faculty/index.html")
+            else:
+                HttpResponse("Inactive User.")
+                return redirect("facultyhome")
         else:
             return render(request,"faculty/login.html")
     else:
         return render(request,"faculty/login.html")
+
 @login_required
 def logout(request):
     logout_view(request)
     return redirect("facultyhome")
-
-        

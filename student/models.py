@@ -13,13 +13,29 @@ class Gatepass(models.Model):
     reason = models.CharField(max_length=300)
     address = models.CharField(max_length=3000)
     s_contact = models.CharField(max_length=9999999999)
-    p_contact = models.CharField(max_length=9999999999)
     items = models.CharField(max_length=400)
     date_time = models.DateTimeField(default=timezone.now) 
+    status = models.BooleanField(default=True) 
+
+
+class Leave(models.Model):
+    student_name = models.CharField(max_length=50, default="name")
+    student_email = models.EmailField(max_length=254,default="pk@pk.com")
+    hostel = models.CharField(max_length=3,null=True)
+    room_c = models.CharField(max_length=10,null=False)
+    room = models.CharField(max_length=10,null=True)
+    date_out = models.DateField()
+    date_in = models.DateField()
+    reason = models.CharField(max_length=300)
+    address = models.CharField(max_length=3000)
+    s_contact = models.CharField(max_length=9999999999)
+    p_contact = models.CharField(max_length=9999999999)
+    date_time = models.DateTimeField(default=timezone.now) 
+    status = models.BooleanField(default=True) 
 
 
 class Complaint(models.Model):
-    student_name = models.CharField(max_length=254)
+    student_name = models.CharField(max_length=254, default="name")
     title = models.CharField(max_length=120)
     room_c = models.CharField(max_length=10,null=True)
     room = models.CharField(max_length=10,null=True)

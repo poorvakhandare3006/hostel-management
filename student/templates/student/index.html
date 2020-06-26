@@ -19,17 +19,14 @@
 
 {% block body %}
  {% load static %}
-  <br/>
+  
   {% if user.is_authenticated %}
       <div class="row">
-        <div class="col-md-1 col-xs-1 col-sm-1"></div>
         <div  class="col-md-10 col-xs-10 col-sm-10">
-          <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#complaint" >
-            Complaint
-          </button> -->
+          <br/>
           <h2>Complaint</h2>
           <br/>
-          {% if user.username == complaint.student_name %}
+          <!-- {% if complaint %} -->
           <div class="modal fade" id="complaint" tabindex="-1" role="dialog" aria-labelledby="complaint" aria-hidden="true"></div>
             <table id="complaint" class="table">
               <thead class="thead-dark">
@@ -51,16 +48,83 @@
                 {% endfor %}
               </tbody>   
             </table> 
-            {% else %}
+            <!-- {% else %}
             <p>
               No Complaint Registered
             </p>
-            {% endif %}
+            {% endif %} -->
         </div>
         </div>
         <div class="col-md-1 col-xs-1 col-sm-1"></div>
       </div>
 
+      <!-- <div class="row">
+        <div  class="col-md-10 col-xs-10 col-sm-10">
+          <h2>Gatepass</h2>
+          <br/>
+          <div ></div>
+            <table id="gatepass" class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Hostel</th>
+                  <th scope="col">Room No.</th>
+                  <th scope="col">Name</th>
+                  <th scope="col"Date Out</th>
+                  <th scope="col">Items</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for complaint in complaint_number %}
+                <tr>
+                  <td>{{gatepass.hostel}}</td>
+                  <td>{{gatepass.room}}</td>
+                  <td>{{gatepass.name}}</td>
+                  <td>{{gatepass.date_out}}</td>
+                  <td>{{gatepass.item}}</td>
+                  <td>{{gatepass.status}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>   
+            </table> 
+        </div>
+        </div>
+        <div class="col-md-1 col-xs-1 col-sm-1"></div>
+      </div> -->
+
+      <!-- <div class="row">
+        <div  class="col-md-10 col-xs-10 col-sm-10">
+          <h2>Leave Application</h2>
+          <br/>
+          <div ></div>
+            <table id="leave" class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Hostel</th>
+                  <th scope="col">Room No.</th>
+                  <th scope="col">Name</th>
+                  <th scope="col"Date Out</th>
+                  <th scope="col">Items</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for complaint in complaint_number %}
+                <tr>
+                  <td>{{leave.hostel}}</td>
+                  <td>{leave.room}}</td>
+                  <td>{{leave.name}}</td>
+                  <td>{{leave.date_out}}</td>
+                  <td>{{leave.address}}</td>
+                  <td>{{leave.status}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>   
+            </table> 
+        </div>
+        </div>
+        <div class="col-md-1 col-xs-1 col-sm-1"></div>
+      </div> -->
          
    {% else %}
     <p>Login first</p> 

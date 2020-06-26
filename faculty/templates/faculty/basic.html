@@ -16,33 +16,47 @@
   <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="">HM</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+      <a class="navbar-brand" href="/faculty">
+        <img src="../../../media/student/images/hotel.svg" alt="HM" width="60" height="50">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/faculty">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/faculty/about">About</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/faculty/contact">Contact Us</a>
-      </li>
-    </ul>
-    
-    <form  method="get" action='/faculty/login' class="form-inline my-2 my-lg-0">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
-    </form>
-    
-  
-
-  </div>
-</nav>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active ml-4">
+            <a class="nav-link" href="/faculty">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item ml-4">
+            <a class="nav-link" href="/faculty/register">Register</a>
+          </li>
+          <li class="nav-item ml-4">
+            <a class="nav-link" href="/faculty/complaint">Complaints</a>
+          </li>
+          <li class="nav-item ml-4">
+            <a class="nav-link" href="/faculty/gatepass">Gatepass</a>
+          </li>
+          <li class="nav-item ml-4">
+            <a class="nav-link" href="/faculty/leave">Leave Applications</a>
+          </li>
+        </ul>
+        
+        <form  method="get" action='/faculty/login' class="form-inline my-2 my-lg-0">
+            {% block nav %} {% endblock %} 
+        </form>
+      </div>
+   </nav>
   {% block body %} {% endblock %}
+
+  <footer class="footer" style=" position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;background-color: black;
+          color: white;
+          text-align: center;">
+    <p>Created By: Amisha and Poorva ;P</p>
+  </footer>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

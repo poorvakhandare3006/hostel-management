@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from .models import Gatepass, Complaint
+from .models import Gatepass, Complaint, Leave
 from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as loginn
@@ -40,6 +40,30 @@ def gatepass(request):
     else:
         return render(request,"student/gatepass.html")
       #  return redirect('studenthome')
+
+
+@login_required
+def leave(request):
+    if request.method=="POST":
+        student_name = request.POST.get('name', '')
+        student_email = request.user.username
+        hostel = request.user.userprofile.hostel
+        room = request.user.userprofile.room
+        room_c = request.POST.get('room', '')
+        date_out = request.POST.get('datefrom', '')
+        date_in = request.POST.get('dateto', '')
+        reason = request.POST.get('reason', '')
+        address = request.POST.get('address', '')
+        s_contact = request.POST.get('scontact', '')
+        p_contact = request.POST.get('pcontact', '')
+        gatepass = Gatepass(student_email=student_email,hostel=hostel,student_name=student_name, date_out=date_out, date_in= date_in,
+            reason=reason,address=address,s_contact=s_contact,p_contact=p_contact )
+        gatepass.save()
+        thank = True
+        return redirect("studenthome")
+    else:
+        return render(request,"student/leave.html")
+      #  return redirect('studenthome')     
 
 
   
