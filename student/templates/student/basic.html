@@ -7,44 +7,55 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-
+    
     <title>{% block title%} {% endblock %}</title>
      <style>
        {% block css %} {% endblock %}
+       
   </style>
   </head>
   <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="/shop">HM</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+      <a class="navbar-brand" href="/student">
+        <img src="../../../media/student/images/hotel.svg" alt="HM" width="60" height="50">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/student">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/student/about">About</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/student/contact">Contact Us</a>
-      </li>
-    </ul>
-    
-    <form  method="get" action='/student/login' class="form-inline my-2 my-lg-0">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
-    </form>
-    
-  
-
-  </div>
-</nav>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active ml-4">
+            <a class="nav-link" href="/student">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item ml-4">
+            <a class="nav-link" href="/student/complaint">Complaint</a>
+          </li>
+          <li class="nav-item ml-4">
+            <a class="nav-link" href="/student/gatepass">Gatepass</a>
+          </li>
+          <li class="nav-item ml-4">
+            <a class="nav-link" href="/student/leave">Leave Application</a>
+          </li>
+        </ul>
+        
+        <form  method="get" action='/student/login' class="form-inline my-2 my-lg-0">
+            {% block nav %} {% endblock %} 
+        </form>
+      </div>
+  </nav>
   {% block body %} {% endblock %}
+  <footer class="footer" style=" position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;background-color: black;
+          color: white;
+          text-align: center;">
+    <p>Created By: Amisha and Poorva ;P</p>
+  </footer>
 
-    <!-- Optional JavaScript -->
+  <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.js"
     integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
