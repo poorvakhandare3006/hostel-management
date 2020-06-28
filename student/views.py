@@ -9,6 +9,8 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 from .forms import ComplaintForm
 from django.views.generic import ListView, DetailView
+from django.contrib.auth.models import User
+
 
 
 # Create your views here.
@@ -74,15 +76,10 @@ def login(request):
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
         if user is not None:
-            loginn(request, user)
-
             if user.is_active:
                 loginn(request, user)
-                data = Complaint.objects.all()
-                comp = {
-                    "complaint_number": data
-                }
-                return render(request,"student/index.html", comp)
+                
+                return redirect("studenthome")
             else:
                 HttpResponse("Inactive User.")
                 return redirect("studenthome")
@@ -112,3 +109,28 @@ def complaint(request):
             return redirect("studenthome")
     else:
         return render(request,"student/complaint.html")
+@login_required
+def change_password(request):
+    if request.method=="POST":
+            username = request.user.username
+            
+            current_password = request.POST.get('password', '')
+            new_password1 = request.POST.get('n_password1', '')
+            new_password2 = request.POST.get('n_password2', '')
+            user1 = authenticate(username=username, password=current_password)
+            if user1 is not None:
+                u = User.objects.get(username=username)
+                u.set_password(new_password1)
+                u.save()
+                userr = authenticate(request, username=username, password=new_password1)
+                loginn(request, userr)
+                pass_set = True
+                return render(request,"student/index.html",{'pass_set':pass_set})
+
+
+            else:
+                current_pass = True
+                return render(request,"student/change_password.html",{'c_pass':current_pass})
+    else:
+        return render(request,"student/change_password.html")
+
