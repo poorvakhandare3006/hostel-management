@@ -25,11 +25,12 @@ def index(request):
 @login_required
 def gatepass(request):
     if request.method=="POST":
-        student_name = request.POST.get('name', '')
-        student_email = request.user.username
+        student_name = request.user.username
+        student_email = request.user.email
         hostel = request.user.userprofile.hostel
         date_out = request.POST.get('datefrom', '')
         date_in = request.POST.get('dateto', '')
+        room = request.user.userprofile.room
         reason = request.POST.get('reason', '')
         address = request.POST.get('address', '')
         s_contact = request.POST.get('scontact', '')
@@ -109,6 +110,7 @@ def complaint(request):
             return redirect("studenthome")
     else:
         return render(request,"student/complaint.html")
+
 @login_required
 def change_password(request):
     if request.method=="POST":
@@ -134,3 +136,22 @@ def change_password(request):
     else:
         return render(request,"student/change_password.html")
 
+@login_required
+def show_complaint(request):    
+    if request.method == "POST":
+        student_name = request.user.username
+        room = request.user.userprofile.room
+        sc = Complaint.objects.filter(student_name=student_name, room=room)
+        return render(request, 'student/show_complaints.html', {'sc': sc})
+    else:
+        return render(request, 'student/show_complaints.html')
+
+@login_required
+def show_gatepass(request):
+    if request.method == "POST":
+        student_name = request.user.username
+        room = request.user.userprofile.room
+        sg = Gatepass.objects.filter(student_name=student_name, room=room)
+        return render(request, 'student/show_gatepass.html', {'sg': sg})
+    else:
+        return render(request, 'student/show_gatepass.html')        
