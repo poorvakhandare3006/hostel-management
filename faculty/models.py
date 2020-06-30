@@ -27,10 +27,9 @@ class UserProfile(models.Model):
     office = models.BooleanField(default=False)
     applied_for_member = models.BooleanField(default=False)
     is_member = models.BooleanField(default=False)
-
-
     date_time = models.DateTimeField(default=timezone.now) 
 
+    
 
 
 

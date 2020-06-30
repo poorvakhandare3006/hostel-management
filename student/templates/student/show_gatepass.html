@@ -27,30 +27,43 @@
     <h2>Gatepass</h2>
     <br/>
     <div class="modal fade" id="complaint" tabindex="-1" role="dialog" aria-labelledby="complaint" aria-hidden="true"></div>
-    <table id="gatepass" class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">Hostel</th>
-            <th scope="col">Room No.</th>
-            <th scope="col">Name</th>
-            <th scope="col">Date Out</th>
-            <th scope="col">Items</th>
-            <!-- <th scope="col">Status</th> -->
-          </tr>
-        </thead>
-        <tbody>
-          {% for gatepass in sg %}
-          <tr>
-            <td>{{gatepass.hostel}}</td>
-            <td>{{gatepass.room}}</td>
-            <td>{{gatepass.name}}</td>
-            <td>{{gatepass.date_out}}</td>
-            <td>{{gatepass.item}}</td>
-            <!-- <td>{{gatepass.status}}</td> -->
-          </tr>
-          {% endfor %}
-        </tbody>   
-      </table> 
+      <table id="gatepass" class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Hostel</th>
+              <th scope="col">Room No.</th>
+              <th scope="col">Name</th>
+              <th scope="col">Date Out</th>
+              <th scope="col">Items</th>
+              <th scope="col">Status</th>
+              <!-- <th scope="col"></th> -->
+            </tr>
+          </thead>
+          <tbody>
+            {% for gatepass in sg %}
+            <tr>
+              <td>{{gatepass.hostel}}</td>
+              <td>{{gatepass.room}}</td>
+              <td>{{gatepass.student_name}}</td>
+              <td>{{gatepass.date_out}}</td>
+              <td>{{gatepass.items}}</td>
+              <td>{{gatepass.status}}</td>
+              <!-- <td>{% if gatepass.status == 'Active' %}
+                <ul class="list-inline m-0">
+                  <li class="list-inline-item">     
+                      <form action='disable_gatepass' method='GET'>                  
+                          <a class="btn" href="{% url 'disable_gatepass' pk=gatepass.pk %}" type='submit' data-placement="top" title="Disable">
+                              <img class="w-50 " alt="Disable" src="https://img.icons8.com/flat_round/64/000000/delete-sign.png"/></i>
+                          </a>
+                      </form>         
+                  </li>
+              </ul>
+                  {% endif%}  -->
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>   
+        </table> 
    </div>
   </div>
 </div> 
@@ -62,6 +75,9 @@
 
 {% block js %}
 <script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 </script>
 {% endblock %}

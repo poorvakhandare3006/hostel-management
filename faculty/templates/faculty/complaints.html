@@ -34,35 +34,23 @@
             <th scope="col">Title</th>
             <th scope="col">Description</th>
             <th scope="col">Status</th>
-            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
           {% for complaint in sc %}
           <tr>
-            <td>{{complaint.room_c}}</td>
+            <td>{{complaint.room}}</td>
             <td>{{complaint.category}}</td>
             <td>{{complaint.title}}</td>
             <td>{{complaint.description}}</td>
             <td>{{complaint.status}}</td>
-            <td>{% if complaint.status == 'Active' %}
-                    <ul class="list-inline m-0">
-                        <li class="list-inline-item">     
-                            <form action='disable_complaint' method='GET'>                  
-                                <a class="btn" href="{% url 'disable_complaint' pk=complaint.pk %}" type='submit' data-placement="top" title="Disable">
-                                    <img class="w-50 " alt="Disable" src="https://img.icons8.com/flat_round/64/000000/delete-sign.png"/></i>
-                                </a>
-                            </form>         
-                        </li>
-                    </ul>
-                {% endif%}
-            </td>
           </tr>
           {% endfor %}
         </tbody>   
       </table>  
    </div>
   </div>
+  <div class="col-md-1 col-xs-1 col-sm-1"></div>
 </div> 
 
 {% endblock %}
