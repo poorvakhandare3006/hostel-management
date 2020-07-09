@@ -15,12 +15,46 @@ from django import template
 from .utils import generate_token
 from django.conf import settings
 from .demo import EMAIL_HOST_USER
+from student.models import Gatepass
+from operator import *
+import json
+
 
 
 # Create your views here.
 def index(request):
     return render(request,'faculty/index.html')
+def complaint(request):
+    if(request.user.userprofile.warden==True):
+        return render(request,'faculty/complaints.html')
+    else:
+        return render(request,'faculty/error_page.html')
 
+def main_gate(request):
+    #if(request.user.userprofile.main_gate==True):
+        if request.method=="POST":
+            roll = request.POST.get('roll', '')
+            try:
+                order = Gatepass.objects.filter(roll=roll,active=True,left_gate=False)
+                count = 0
+                if len(order)>0:
+                    updates = []
+                    for item in reversed(order):
+                        if(count<5):
+                            count = count +1
+                            updates.append({'name': item.student_name, 'email': item.student_email,'hostel':item.hostel,'roll':item.roll,'date_out':item.date_out,'date_in':item.date_in,'room':item.room,'reason':item.reason,'address':item.address,'s_contact':item.s_contact,'p_contact':item.p_contact,'items':item.items,'supervisor':item.approved_supervisor,'guard':item.approved_guard,'control_room':item.approved_control_room})
+                            response = json.dumps({"status":"success", "updates": updates}, default=str)
+                        else:
+                            break
+                    return HttpResponse(response)
+                else:
+                    return HttpResponse('{"status":"nogatepass"}')
+            except Exception as e:
+                return HttpResponse('{"status":"error"}')
+
+        return render(request, 'faculty/main_gate.html')
+   # else:
+    #    return render(request,'faculty/error_page.html')
 @login_required
 def register(request):
     if request.method=="POST":

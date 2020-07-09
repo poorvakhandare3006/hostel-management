@@ -68,7 +68,7 @@ def complaint(request):
 @login_required
 def gatepass(request):
     if request.method=="POST":
-        student_name = request.user.username
+        student_name = request.user.userprofile.first_name
         student_email = request.user.email
         hostel = request.user.userprofile.hostel
         date_out = request.POST.get('datefrom', '')

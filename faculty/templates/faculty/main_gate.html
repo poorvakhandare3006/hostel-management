@@ -1,0 +1,203 @@
+{% extends 'faculty/basic.html' %}
+{% block title%}Main Gate{% endblock %}
+
+{% block css %}
+         .jumbotron{
+      margin:2% 15% 0% 15%;
+    }
+    .required {
+  color: red;
+}
+     .tt {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+    margin:2% 15% 0% 15%;
+
+}
+#ttt{
+    font-family: arial, sans-serif;
+  border-collapse: collapse;
+    
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  width:10%;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+{% endblock %}
+
+{% block body %}
+{% load static %}
+
+<div class="wrapper">
+            <div class="jumbotron">
+                <h1 class="center">Search Gatepass</h1>
+                <br>
+                <form action="#" method="post" id="form1">{% csrf_token %}
+                  <div class="form-group">
+                    <label for="roll">Roll No.</label>
+                    <input type="roll" class="form-control" id="roll" name="roll" placeholder="student roll no." pattern="[0-9]{4}[A-Z]{3}-[0-9]{3}" required>
+                  </div>
+                  
+                <br>
+
+                  <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+                <br>
+                <br>  
+               
+            </form>
+            </div>
+            </div>
+
+              <div class="col my-4">
+        <h2 style="text-align:center">Student Details</h2>
+        <div class="my-4">
+            <ul class="list-group" id="items"  style="text-align:center">
+            	Enter your Roll no to fetch the Gatepass
+            </ul>
+        </div>
+        <h2  style="text-align:center">Gatepass</h2>
+        <div class="my-4">
+            <ul class="list-group" id="citems" style="text-align:center">
+Your Gatepass will appear here
+            </ul>
+        </div>
+    </div>
+
+
+
+{% endblock %}
+ {% block js %}
+<script>
+$('#form1').submit(function(event) {
+    $('#items').empty();
+    var formData = {
+        'roll': $('input[name=roll]').val(),
+        'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
+    };
+    $.ajax({
+            type: 'POST',
+            url: '/faculty/main_gate/',
+            data: formData,
+            encode: true
+        })
+.done(function(data) {
+    $('#citems').empty();
+            data = JSON.parse(data);
+            if (data['status'] == 'success') {
+                updates = data['updates'];
+                let name = updates[0]['name'];
+                let roll = updates[0]['roll'];
+                let hostel = updates[0]['hostel'];
+                let email = updates[0]['email'];
+                let room = updates[0]['room'];
+                
+                str = `<table id = "tt">
+                        <tr>
+                            <th>Name</th>
+                            <th>Roll No</th>
+                            <th>Hostel</th>
+                            <th>Room</th>
+                            <th>Email</th>
+                        </tr>
+                        <tr>
+                            <td>${name}</td>
+                            <td>${roll}</td>
+                            <td>${hostel}</td>
+                            <td>${room}</td>
+                            <td>${email}</td>
+
+                            
+                        </tr>
+                        </table>`
+                $('#items').append(str);
+                 mystr = `<table class="ttt">
+                        <tr>
+                            <th>Data Out</th>
+                            <th>Date In</th>
+                            <th>Reason</th>
+                            <th>Items Carrying</th>
+                            <th>Address during Leave</th>
+                            <th>Student Contact</th>
+                            <th>Guardian's Contact</th>
+                            <th>Supervisor Approval</th>
+                            <th>Guard Approval</th>
+                            <th>Control Room Approval</th>
+                        </tr></table>
+                        
+                        `
+                    $('#citems').append(mystr);
+
+                for (i = 0; i < updates.length; i++) {
+                    let date_out = updates[i]['date_out'];
+                    let date_in = updates[i]['date_in'];
+                    let reason = updates[i]['reason'];
+                    let items = updates[i]['items'];
+                    let address = updates[i]['address'];
+                    let s_contact = updates[i]['s_contact'];
+                    let p_contact = updates[i]['p_contact'];
+                    let supervisor = updates[i]['supervisor'];
+                    let guard = updates[i]['guard'];
+                    let control_room = updates[i]['control_room'];
+                    if (supervisor==true)
+                    {
+                        var s = `<span style="color:blue">Approved</span>`;
+                    }
+                    else
+                    {
+                        var s = `<span style="color:red">Not Approved</span>`;
+                    } 
+                    if (guard==true)
+                    {
+                        var g = `<span style="color:blue">Approved</span>`;;
+                    }
+                    else
+                    {
+                        var g = `<span style="color:red">Not Approved</span>`;
+                    }
+                    if (control_room==true)
+                    {
+                        c = `<span style="color:blue">Approved</span>`;
+                    }
+                    else
+                    {
+                        c = `<span style="color:red">Not Approved</span>`;
+                    }  
+                    
+
+                    mystr = `<table><tr>
+                            <td>${date_out}</td>
+                            <td>${date_in}</td>
+                            <td>${reason}</td>
+                            <td>${items}</td>
+                            <td>${address}</td>
+                            <td>${s_contact}</td>
+                            <td>${p_contact}</td>
+                            <td>${s}</td>
+                            <td>${g}</td>
+                            <td> ${c} </td>                            
+                        </tr></table>`
+                    $('#citems').append(mystr);
+                   
+                 
+
+
+                }
+            
+            } 
+            else {
+                let aa = data[status]
+                mystr = `<li class="list-group-item d-flex justify-content-between align-items-center">
+                    Sorry, We are not able to fetch this Roll no. Make sure to type correct roll no</li>`
+                $('#items').append(mystr);
+                $('#citems').append(mystr);  }
+        });
+    event.preventDefault();
+});
+</script>
+{% endblock %}
