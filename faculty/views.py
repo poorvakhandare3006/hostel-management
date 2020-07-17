@@ -31,7 +31,7 @@ def complaint(request):
         return render(request,'faculty/error_page.html')
 
 def main_gate(request):
-    #if(request.user.userprofile.main_gate==True):
+    if(request.user.userprofile.main_gate==True):
         if request.method=="POST":
             roll = request.POST.get('roll', '')
             try:
@@ -53,51 +53,54 @@ def main_gate(request):
                 return HttpResponse('{"status":"error"}')
 
         return render(request, 'faculty/main_gate.html')
-   # else:
-    #    return render(request,'faculty/error_page.html')
+    else:
+       return render(request,'faculty/error_page.html')
 @login_required
 def register(request):
-    if request.method=="POST":
-        student_name = request.POST.get('name', '')
-        student_email = request.POST.get('email', '')
-        password = request.POST.get('password', '')
-        hostel = request.POST.get('hostel', '')
-        address = request.POST.get('address', '')
-        s_contact = request.POST.get('scontact', '')
-        p_contact = request.POST.get('pcontact', '')
-        image = request.POST.get('image','')
-        enrollment_no = request.POST.get('enroll','')
-        gender = request.POST.get('gender','')
-        room_no = request.POST.get('room','')
-        course = request.POST.get('course','')
-        roll_no = request.POST.get('roll','')
-        user = User.objects.create_user(username=student_email,email=student_email,password=password,first_name=student_name)
-        user.is_active = False
-        profile = user.userprofile
-        profile.hostel=hostel
-        profile.address=address
-        profile.contact=s_contact
-        profile.p_contact=p_contact
-        profile.image=image
-        profile.enroll=enrollment_no
-        profile.gender=gender
-        profile.room=room_no
-        profile.applied_for_member=True
-        profile.student=True
-        profile.course=course
-        profile.roll=roll_no
-        profile.save()
-        user.save()
-        
-        thank = True
-        mail_subject = 'IIITM Hostel Management'
-        message=render_to_string('faculty/register_apply.html',{'user': user,'reference_name' : student_email ,'domain': '127.0.0.1:8000','uid': urlsafe_base64_encode(force_bytes(user.pk)),'token': generate_token.make_token(user),})
-        email=EmailMessage(mail_subject,message,settings.EMAIL_HOST_USER,[student_email])
-        email.send()
-        return HttpResponse("email sent")
-        return render(request, 'faculty/register.html',{'thank':thank})
+    if(request.user.userprofile.warden==True):
+        if request.method=="POST":
+            student_name = request.POST.get('name', '')
+            student_email = request.POST.get('email', '')
+            password = request.POST.get('password', '')
+            hostel = request.POST.get('hostel', '')
+            address = request.POST.get('address', '')
+            s_contact = request.POST.get('scontact', '')
+            p_contact = request.POST.get('pcontact', '')
+            image = request.POST.get('image','')
+            enrollment_no = request.POST.get('enroll','')
+            gender = request.POST.get('gender','')
+            room_no = request.POST.get('room','')
+            course = request.POST.get('course','')
+            roll_no = request.POST.get('roll','')
+            user = User.objects.create_user(username=student_email,email=student_email,password=password,first_name=student_name)
+            user.is_active = False
+            profile = user.userprofile
+            profile.hostel=hostel
+            profile.address=address
+            profile.contact=s_contact
+            profile.p_contact=p_contact
+            profile.image=image
+            profile.enroll=enrollment_no
+            profile.gender=gender
+            profile.room=room_no
+            profile.applied_for_member=True
+            profile.student=True
+            profile.course=course
+            profile.roll=roll_no
+            profile.save()
+            user.save()
+            
+            thank = True
+            mail_subject = 'IIITM Hostel Management'
+            message=render_to_string('faculty/register_apply.html',{'user': user,'reference_name' : student_email ,'domain': '127.0.0.1:8000','uid': urlsafe_base64_encode(force_bytes(user.pk)),'token': generate_token.make_token(user),})
+            email=EmailMessage(mail_subject,message,settings.EMAIL_HOST_USER,[student_email])
+            email.send()
+            return HttpResponse("email sent")
+            return render(request, 'faculty/register.html',{'thank':thank})
+        else:
+            return render(request,"faculty/register.html")
     else:
-        return render(request,"faculty/register.html")
+       return render(request,'faculty/error_page.html')
 
 def activate(request, uidb64, token):
 	try:
