@@ -20,20 +20,21 @@ def index(request):
   
 @csrf_protect 
 def login(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-                if(request.user.userprofile.student==True):
-                    loginn(request, user)
-                    return redirect("studenthome")
-                else:
-                    return render(request,'student/error_page.html')
+        if request.method == 'POST':
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(request, username=username, password=password,last_name='student')
+            if user is not None:
+                    if(user.userprofile.student==True):
+                        loginn(request, user)
+                        return redirect("studenthome")
+                    else:
+                        return render(request,'student/error_page.html')
+            else:
+                return render(request,"student/login.html")
         else:
             return render(request,"student/login.html")
-    else:
-        return render(request,"student/login.html")
+        
 
 @login_required
 def logout(request):

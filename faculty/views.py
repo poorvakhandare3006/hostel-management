@@ -72,7 +72,7 @@ def register(request):
             room_no = request.POST.get('room','')
             course = request.POST.get('course','')
             roll_no = request.POST.get('roll','')
-            user = User.objects.create_user(username=student_email,email=student_email,password=password,first_name=student_name)
+            user = User.objects.create_user(username=student_email,email=student_email,password=password,first_name=student_name,last_name='student')
             user.is_active = False
             profile = user.userprofile
             profile.hostel=hostel
