@@ -29,6 +29,11 @@ def complaint(request):
         return render(request,'faculty/complaints.html')
     else:
         return render(request,'faculty/error_page.html')
+def gatepass(request):
+    if(request.user.userprofile.warden==True):
+        return render(request,'faculty/gatepass.html')
+    else:
+        return render(request,'faculty/error_page.html')
 
 def main_gate(request):
     if(request.user.userprofile.main_gate==True):

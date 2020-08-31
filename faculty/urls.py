@@ -10,6 +10,7 @@ urlpatterns = [
     # path("gatepass/",views.gatepass,name="gatepass"),
     # path("leave/",views.leave,name="leave"),
     path("complaint/",views.complaint,name="complaint"),
+    path("gatepass/",views.gatepass,name="gatepass"),
     path("login/",views.login,name="login"),
     path("logout/",views.logout,name="logout"),
     path("main_gate/",views.main_gate,name="main_gate"),

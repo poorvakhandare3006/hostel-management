@@ -18,13 +18,12 @@
 {% load static %}
 
 {% if user.is_authenticated %}
-{{user.username}}
-{{user.pk}}
-{{user.userprofile.hostel}}
+<h1><p style="text-align:center;margin:10px;">Hello! {{user.username}} ,Welcome to Hostel Management of ABVIIITM</h1></p>
+
 
 
   {% else %}
-<p>login first</p>
+<p style="text-align:center;margin:10px;">Login to view this page</p>
 {% endif%}
 {% endblock %} 
 
